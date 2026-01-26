@@ -25,15 +25,15 @@ export const referenceToVideoConfig: ToolPageConfig = {
     uiMode: "compact",
 
     defaults: {
-      model: "wan2.6-text-to-video",
+      model: "wan2.6",
       duration: 10,
       aspectRatio: "same-as-original",
       outputNumber: 1,
     },
 
     models: {
-      available: ["wan2.6-text-to-video", "seedance-1.5-pro"],
-      default: "wan2.6-text-to-video",
+      available: ["wan2.6"],
+      default: "wan2.6",
     },
 
     features: {

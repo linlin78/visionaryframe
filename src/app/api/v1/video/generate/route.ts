@@ -6,13 +6,14 @@ import { z } from "zod";
 
 const generateSchema = z.object({
   prompt: z.string().min(1).max(5000),
-  model: z.enum(["sora-2", "wan-2.6", "veo-3.1", "seedance-1.5-pro"]),
+  model: z.string().min(1),
   mode: z.string().optional(),
-  duration: z.union([z.literal(5), z.literal(10), z.literal(15)]),
-  aspectRatio: z.enum(["16:9", "9:16"]).optional(),
-  quality: z.enum(["standard", "high"]).optional(),
+  duration: z.number().optional(),
+  aspectRatio: z.string().optional(),
+  quality: z.string().optional(),
   imageUrl: z.string().url().optional(),
-  outputNumber: z.number().optional(),
+  imageUrls: z.array(z.string().url()).optional(),
+  outputNumber: z.number().int().min(1).optional().default(1),
   generateAudio: z.boolean().optional(),
 });
 
@@ -44,6 +45,10 @@ export async function POST(request: NextRequest) {
       aspectRatio: data.aspectRatio,
       quality: data.quality,
       imageUrl: data.imageUrl,
+      imageUrls: data.imageUrls,
+      mode: data.mode,
+      outputNumber: data.outputNumber,
+      generateAudio: data.generateAudio,
     });
 
     return apiSuccess(result);

@@ -448,13 +448,15 @@ export function VideoGeneratorInput({
 
   // Calculate estimated credits
   const calculatedCredits = useMemo(() => {
+    const resolvedResolution =
+      generationType === "video" && showResolutionControl ? resolution : undefined;
     if (calculateCredits && currentModel) {
       return calculateCredits({
         type: generationType,
         model: currentModel.id,
         outputNumber: currentOutputNumber,
         duration: generationType === "video" ? duration : undefined,
-        resolution: generationType === "video" ? resolution : undefined,
+        resolution: resolvedResolution,
       });
     }
     if (estimatedCredits !== undefined) {
@@ -466,7 +468,7 @@ export function VideoGeneratorInput({
       return calculateVideoCredits({
         model: currentModel as VideoModel,
         duration,
-        resolution,
+        resolution: resolvedResolution,
         outputNumber: currentOutputNumber,
         generateAudio: generateAudio,
       });
@@ -486,6 +488,7 @@ export function VideoGeneratorInput({
     duration,
     resolution,
     generateAudio,
+    showResolutionControl,
   ]);
 
   // Helper to check if icon is a URL
@@ -647,10 +650,23 @@ export function VideoGeneratorInput({
   const handleSubmit = () => {
     if (!canSubmit || !currentModel || !currentMode) return;
 
+    // Separate actual files from template URLs
+    // If preview starts with http/https, it's a template URL
+    const imageUrls = uploadedImages
+      .filter(img => img.preview.startsWith("http"))
+      .map(img => img.preview);
+
+    // Only send files if they are NOT template URLs (or if we really want to support both)
+    // For now, if we have a URL, we prefer sending that to avoid upload
+    const imagesToSend = uploadedImages
+      .filter(img => !img.preview.startsWith("http"))
+      .map(img => img.file);
+
     const data: SubmitData = {
       type: generationType,
       prompt,
-      images: uploadedImages.length > 0 ? uploadedImages.map((img) => img.file) : undefined,
+      images: imagesToSend.length > 0 ? imagesToSend : (uploadedImages.length > 0 && imageUrls.length === 0 ? uploadedImages.map(i => i.file) : undefined),
+      imageUrls: imageUrls.length > 0 ? imageUrls : undefined,
       imageSlots: uploadedImages.length > 0
         ? uploadedImages.map((img) => ({ slot: img.slot, file: img.file }))
         : undefined,
@@ -658,7 +674,10 @@ export function VideoGeneratorInput({
       mode: currentMode.id,
       aspectRatio: currentAspectRatio,
       duration: generationType === "video" ? duration : undefined,
-      resolution: generationType === "video" ? resolution : undefined,
+      resolution:
+        generationType === "video" && showResolutionControl
+          ? resolution
+          : undefined,
       outputNumber: currentOutputNumber,
       style: generationType === "image" && selectedStyle ? selectedStyle.id : undefined,
       generateAudio: modelSupportsAudio ? generateAudio : undefined,
@@ -807,6 +826,7 @@ export function VideoGeneratorInput({
       {/* Image Preview Dialog */}
       <Dialog open={!!previewImage} onOpenChange={() => setPreviewImage(null)}>
         <DialogContent className="bg-zinc-900 border-zinc-800 max-w-2xl p-2">
+          <DialogTitle className="sr-only">Image Preview</DialogTitle>
           {previewImage && (
             <img src={previewImage} alt="Preview" className="w-full h-auto rounded-lg" />
           )}
