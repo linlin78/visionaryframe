@@ -33,7 +33,7 @@ export const textToVideoConfig: ToolPageConfig = {
     },
 
     models: {
-      available: ["sora-2", "veo-3-1", "wan-2-6", "seedance-1-5", "kling-2"],
+      available: ["sora-2", "veo3.1-fast", "wan2.6-text-to-video", "seedance-1.5-pro"],
       default: "sora-2",
     },
 

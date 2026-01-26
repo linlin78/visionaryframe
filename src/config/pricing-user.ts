@@ -245,17 +245,17 @@ export const VIDEO_MODEL_PRICING: Record<string, VideoModelPricing> = {
     enabled: true,
   },
 
-  /** Wan 2.6 */
-  "wan2.6": {
+  /** Wan 2.6 - 阿里通义万象 2.6 */
+  "wan2.6-text-to-video": {
     baseCredits: 156,     // 5秒 720p = 156积分
     perSecond: 78,        // 每额外秒 = 78积分
     qualityMultiplier: 1.67, // 1080p = 720p × 1.67
     enabled: true,
   },
 
-  /** Veo 3.1 - Google */
-  "veo-3.1": {
-    baseCredits: 60,      // 固定 60积分（不按时长）
+  /** Veo 3.1 Fast - Google DeepMind 快速版本 */
+  "veo3.1-fast": {
+    baseCredits: 60,      // 固定 60积分（8秒视频，不按时长）
     perSecond: 0,
     enabled: true,
   },

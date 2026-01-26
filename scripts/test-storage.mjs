@@ -79,7 +79,8 @@ async function testStorageConnection() {
     );
 
     if (!uploadResponse.ok) {
-      throw new Error(`上传失败: ${uploadResponse.statusText}`);
+      const errorText = await uploadResponse.text().catch(() => "");
+      throw new Error(`上传失败: ${uploadResponse.status} ${uploadResponse.statusText}${errorText ? ` - ${errorText}` : ""}`);
     }
 
     console.log("   ✅ 文件上传成功!");
@@ -119,7 +120,22 @@ async function testStorageConnection() {
     console.error("\n❌ 测试失败!");
     console.error(`错误信息: ${error.message}`);
 
-    if (error.message.includes("fetch failed") || error.message.includes("ECONNREFUSED")) {
+    if (error.message.includes("403") || error.message.includes("Forbidden")) {
+      console.log("\n💡 403 错误排查步骤:");
+      console.log("   1. 检查 API Token 权限:");
+      console.log("      - 确保 API Token 有 'Object Read & Write' 权限");
+      console.log("      - 在 Cloudflare Dashboard → R2 → Manage R2 API Tokens 中检查");
+      console.log("   2. 检查存储桶名称:");
+      console.log(`      - 当前配置: ${process.env.STORAGE_BUCKET}`);
+      console.log("      - 确保存储桶名称完全匹配（区分大小写）");
+      console.log("   3. 检查 Endpoint 配置:");
+      console.log(`      - 当前配置: ${process.env.STORAGE_ENDPOINT}`);
+      console.log("      - 格式应为: https://<account-id>.r2.cloudflarestorage.com");
+      console.log("      - 确保不包含存储桶名称在 Endpoint 中");
+      console.log("   4. 验证 API 凭证:");
+      console.log("      - 确保 STORAGE_ACCESS_KEY 和 STORAGE_SECRET_KEY 正确");
+      console.log("      - 如果凭证已过期，需要重新创建 API Token");
+    } else if (error.message.includes("fetch failed") || error.message.includes("ECONNREFUSED")) {
       console.log("\n💡 可能的原因:");
       console.log("   - Endpoint 地址不正确");
       console.log("   - 网络连接问题");

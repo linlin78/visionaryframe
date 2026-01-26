@@ -158,8 +158,8 @@ export const CREDITS_CONFIG = {
             durations: [10, 15],
             aspectRatios: ["16:9", "9:16"],
           },
-          "wan2.6": {
-            id: "wan2.6",
+          "wan2.6-text-to-video": {
+            id: "wan2.6-text-to-video",
             name: "Wan 2.6",
             provider: "evolink" as const,
             description: "models.wan26.description",
@@ -168,9 +168,9 @@ export const CREDITS_CONFIG = {
             durations: [5, 10, 15],
             aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4"],
           },
-          "veo-3.1": {
-            id: "veo-3.1",
-            name: "Veo 3.1",
+          "veo3.1-fast": {
+            id: "veo3.1-fast",
+            name: "Veo 3.1 Fast",
             provider: "evolink" as const,
             description: "models.veo31.description",
             supportImageToVideo: true,
