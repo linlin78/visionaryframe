@@ -27,10 +27,10 @@
     "settings": "设置"
   },
   "Hero": {
-    "badge": "支持 Sora 2、Veo 3.1 等模型",
-    "title": "将您的想法转化为精彩视频",
-    "subtitle": "使用 AI",
-    "description": "在几分钟内创建专业的 AI 生成视频。支持文本转视频、图片转视频，或增强现有素材。",
+    "badge": "支持 Sora 2、Veo 3.1 等最新模型",
+    "title": "3 步生成专业视频，小白也能用",
+    "subtitle": "AI 视频创作",
+    "description": "无需专业技能，只需简单描述想法，AI 帮你生成精彩视频。支持文本转视频、图片转视频，3-5 分钟快速完成。",
     "startCreating": "免费开始创作",
     "viewExamples": "查看示例",
     "features": {

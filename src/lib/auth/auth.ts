@@ -5,6 +5,8 @@ import { magicLink } from "better-auth/plugins";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
 
+// 导入全局代理配置（必须在最前面）
+
 import {
   CreditTransType,
   creditService,
