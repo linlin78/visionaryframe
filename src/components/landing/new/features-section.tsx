@@ -50,7 +50,7 @@ export function FeaturesSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              为什么选择 VideoFly
+              为什么选择 VisionFrame
             </h2>
             <p className="text-lg text-[#ADADB0]">
               强大功能，让视频创作更简单

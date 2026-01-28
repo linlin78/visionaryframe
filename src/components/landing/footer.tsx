@@ -43,12 +43,12 @@ export function LandingFooter() {
   const socialLinks = [
     {
       name: "GitHub",
-      href: "https://github.com/videofly/videofly",
+      href: "https://github.com/visionframe/videofly",
       icon: Github,
     },
     {
       name: "Twitter",
-      href: "https://twitter.com/videofly",
+      href: "https://twitter.com/visionframe",
       icon: Twitter,
     },
   ];
@@ -64,7 +64,7 @@ export function LandingFooter() {
               href="/"
               className="flex items-center gap-2 text-xl font-semibold mb-4"
             >
-              🎬 VideoFly
+              🎬 VisionFrame
             </LocaleLink>
             <p className="text-sm text-muted-foreground mb-4">
               Transform your ideas into stunning videos with AI.
@@ -118,7 +118,7 @@ export function LandingFooter() {
           <p className="text-sm text-muted-foreground flex items-center gap-1">
             Made with
             <Heart className="h-4 w-4 fill-pink-500 text-pink-500" />
-            by VideoFly Team
+            by VisionFrame Team
           </p>
         </div>
       </div>

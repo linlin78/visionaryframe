@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: ModelPageProps) {
   const pathSegment = getPathSegment(params);
 
   return {
-    title: `${modelInfo[pathSegment]?.name || "Model"} - VideoFly`,
+    title: `${modelInfo[pathSegment]?.name || "Model"} - VisionFrame`,
     description: modelInfo[pathSegment]?.description || "AI Video Generation Platform",
   };
 }

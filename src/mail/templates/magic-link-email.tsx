@@ -52,8 +52,8 @@ MagicLinkEmail.PreviewProps = {
       },
       magicLink: {
         greeting: "Hi {name},",
-        title: "Sign In to VideoFly",
-        body: "We received a request to sign in to your VideoFly account.",
+        title: "Sign In to VisionFrame",
+        body: "We received a request to sign in to your VisionFrame account.",
         instruction: "Click the button below to sign in:",
         button: "Sign In",
         validity: "This link will expire in 24 hours.",

@@ -138,7 +138,7 @@ export function Footer() {
               {/* Social Links */}
               <div className="flex items-center gap-6">
                 <a
-                  href="https://twitter.com/videofly"
+                  href="https://twitter.com/visionframe"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#8B8B90] hover:text-[#A855F7] transition-colors"
@@ -147,7 +147,7 @@ export function Footer() {
                   <Twitter className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://github.com/videofly"
+                  href="https://github.com/visionframe"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#8B8B90] hover:text-[#A855F7] transition-colors"
@@ -156,7 +156,7 @@ export function Footer() {
                   <Github className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://discord.gg/videofly"
+                  href="https://discord.gg/visionframe"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#8B8B90] hover:text-[#A855F7] transition-colors"

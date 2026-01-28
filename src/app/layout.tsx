@@ -51,10 +51,10 @@ export const metadata = {
   ],
   authors: [
     {
-      name: "VideoFly",
+      name: "VisionFrame",
     },
   ],
-  creator: "VideoFly",
+  creator: "VisionFrame",
   openGraph: {
     type: "website",
     locale: "en_US",

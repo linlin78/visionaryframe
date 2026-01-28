@@ -50,7 +50,7 @@ export function FAQSection() {
               常见问题
             </h2>
             <p className="text-lg text-[#ADADB0]">
-              快速了解 VideoFly 的常见问题
+              快速了解 VisionFrame 的常见问题
             </p>
           </motion.div>
 

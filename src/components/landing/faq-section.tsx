@@ -124,10 +124,10 @@ export function FAQSection() {
               <p className="text-muted-foreground">
                 {t("contact")}
                 <a
-                  href="mailto:support@videofly.app"
+                  href="mailto:contact@visionaryframe.com"
                   className="text-primary hover:underline mx-1"
                 >
-                  support@videofly.app
+                  contact@visionaryframe.com
                 </a>
               </p>
             </motion.div>
