@@ -101,12 +101,7 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8 text-sm"
           >
             <div className="flex items-center gap-2 text-[#6B6B70]">
-              <span>已为 10,000+ 创作者生成视频</span>
-            </div>
-            <div className="hidden sm:block w-px h-4 bg-[#6B6B70]" />
-            <div className="flex items-center gap-1 text-[#FFD700]">
-              <span>★★★★★</span>
-              <span className="text-[#FFD700] font-medium">4.9/5</span>
+              <span>已为众多创作者生成视频，广受创作者好评</span>
             </div>
           </motion.div>
         </div>
