@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { DarkPricing } from "@/components/price/dark-pricing";
 import { PricingCards } from "@/components/price/pricing-cards";
-import { FAQSection } from "@/components/landing/faq-section";
+import { FAQSection } from "@/components/landing/new/faq-section";
 import { billingProvider } from "@/config/billing-provider";
 import { getUserPlans } from "@/services/billing";
 import type { CreditsDictionary } from "@/hooks/use-credit-packages";

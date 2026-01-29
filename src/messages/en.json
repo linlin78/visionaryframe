@@ -28,20 +28,15 @@
   },
   "Hero": {
     "badge": "Powered by Sora 2, Veo 3.1 & more",
-    "title": "Create Pro Videos in 3 Steps, No Skills Needed",
+    "title": "Create High-Quality Videos in 3 Steps, No Skills Needed",
     "subtitle": "AI Video Creation",
-    "description": "No expertise required. Just describe your idea and AI creates stunning videos for you. Text-to-video, image-to-video, ready in 3-5 minutes.",
+    "description": "No expertise required. Just describe your idea and AI creates videos for you. Text-to-video, image-to-video, typically ready in 3-5 minutes. Actual generation time varies based on complexity and queue.",
     "startCreating": "Start Creating Free",
     "viewExamples": "View Examples",
     "features": {
       "fast": "Lightning Fast",
       "easy": "Easy to Use",
       "ai": "AI-Powered"
-    },
-    "stats": {
-      "videos": "videos created",
-      "users": "happy users",
-      "rating": "user rating"
     },
     "creditsHint": "Free credits to start • No credit card required"
   },
@@ -162,7 +157,7 @@
   "CTA": {
     "badge": "Limited Time Offer",
     "title": "Ready to Create Amazing Videos?",
-    "subtitle": "Join thousands of creators already using VisionFrame",
+    "subtitle": "Join the AI Video Generation Revolution",
     "description": "Start creating professional videos today with our free trial",
     "getStarted": "Get Started Free",
     "learnMore": "Learn More",
@@ -174,41 +169,51 @@
     },
     "generating": "Generating...",
     "readyIn": "Ready in",
-    "minutes": "minutes",
-    "from": "from",
-    "reviews": "reviews",
-    "testimonials": {
-      "title": "Loved by Creators",
-      "subtitle": "See what our users are saying"
-    }
+    "minutes": "minutes"
   },
   "FAQ": {
     "title": "Frequently Asked Questions",
-    "subtitle": "Everything you need to know about VisionFrame template",
+    "subtitle": "Everything you need to know about VisionFrame AI Video Service",
     "contact": "Still have questions? Contact us at",
-    "template": {
-      "question": "What is VisionFrame template?",
-      "answer": "VisionFrame is a production-ready AI video generation SaaS template built with Next.js 15, React 19, and Drizzle ORM. It includes everything you need to launch your own AI video platform: user authentication, credit system, AI provider integration, payment processing, and a beautiful UI ready for customization."
+    "whatIs": {
+      "question": "What is VisionFrame?",
+      "answer": "VisionFrame is an AI-powered video generation platform that allows you to create stunning videos from text descriptions or images. No video editing skills required - simply describe your idea, and our AI creates professional videos in minutes."
     },
-    "deployment": {
-      "question": "How do I deploy this template?",
-      "answer": "VisionFrame can be deployed to Vercel, Railway, or any Node.js hosting platform. Simply connect your GitHub repository, set up the required environment variables, and deploy. The template includes detailed documentation in the /docs folder to guide you through the process."
+    "howToStart": {
+      "question": "How do I start using VisionFrame?",
+      "answer": "Getting started is easy: 1) Sign up for a free account, 2) Receive 50 free credits to try, 3) Choose Text-to-Video or Image-to-Video, 4) Enter your description or upload an image, 5) Wait 3-5 minutes for generation, 6) Download and share your video!"
     },
     "aiModels": {
-      "question": "Which AI models are supported?",
-      "answer": "The template currently supports Evolink (Sora 2, Wan 2.6, Veo 3.1, Seedance) and Kie.ai. The modular provider architecture makes it easy to add more AI providers. You can configure models and pricing in the config/pricing-user.ts file."
+      "question": "Which AI models do you use?",
+      "answer": "We integrate with the most advanced AI video generation models: Sora 2 (OpenAI), Veo 3.1 (Google), Wan 2.6 (Alibaba), and Seedance 1.5 Pro (ByteDance). We continuously update to the latest models for best quality."
     },
-    "credits": {
-      "question": "How does the credit system work?",
-      "answer": "VisionFrame uses a FIFO-based credit system with freeze/settle/release pattern. Users purchase credit packages or subscriptions, which are consumed when generating videos. The system supports credit expiration, refunds, and detailed transaction history."
+    "pricing": {
+      "question": "How does pricing work?",
+      "answer": "We use a simple credit system. New users get 50 free credits. After that, purchase credit packages or subscribe to a plan. Credits are consumed when generating videos (typically 10-60 credits per video depending on length and quality). No automatic charges unless you subscribe."
     },
-    "customization": {
-      "question": "Can I customize the UI and branding?",
-      "answer": "Absolutely! The template is built with Tailwind CSS 4 and shadcn/ui components, making customization straightforward. All colors, fonts, and styling can be modified through the Tailwind configuration. The component structure is modular and well-documented."
+    "generationTime": {
+      "question": "How long does video generation take?",
+      "answer": "Most videos are generated in 3-5 minutes. Actual time varies based on video duration (5-15 seconds), resolution (480p-1080p), and current queue. Longer videos and higher quality may take more time."
     },
-    "payment": {
-      "question": "What payment providers are integrated?",
-      "answer": "VisionFrame integrates with Creem as the primary payment provider, with Stripe available as a secondary option. Both support subscriptions and one-time purchases. The payment webhook system automatically handles credit allocation to user accounts."
+    "commercialUse": {
+      "question": "Can I use videos commercially?",
+      "answer": "Yes, commercial use is allowed on certain plans. You own the videos you generate, but you must ensure you have rights to any uploaded materials. Check your plan details for specific commercial use permissions."
+    },
+    "quality": {
+      "question": "What video quality can I expect?",
+      "answer": "We support 720p, 1080p, and 4K resolutions. Quality varies based on prompt clarity, reference images, and AI model capabilities. We recommend reviewing generated content before commercial use."
+    },
+    "prohibited": {
+      "question": "What content is prohibited?",
+      "answer": "We strictly prohibit generating content involving violence, pornography, hate speech, illegal activities, or infringement of others' rights. Violations result in immediate account termination."
+    },
+    "refunds": {
+      "question": "What is your refund policy?",
+      "answer": "Unused credit packages can be refunded within 7 days of purchase. Subscriptions can be cancelled within 7 days for a full refund. Technical issues that prevent service use are eligible for compensation or refunds."
+    },
+    "support": {
+      "question": "How can I get support?",
+      "answer": "Contact us at contact@visionaryframe.com for any questions. We typically respond within 1 business day. Premium plans include priority support."
     }
   },
   "Footer": {
@@ -505,5 +510,80 @@
     "copyLink": "Copy link",
     "removeFromHistory": "Remove from history",
     "generationFailed": "Generation Failed"
+  },
+  "RefundPolicy": {
+    "title": "Refund Policy",
+    "description": "Learn about VisionFrame's refund policy and process",
+    "intro": {
+      "title": "Refund Policy",
+      "content": "At VisionFrame, we are committed to providing you with the highest quality AI video generation service. If you are not satisfied with our service, we have established a transparent and fair refund policy to protect your rights."
+    },
+    "policy": {
+      "title": "Refund Conditions",
+      "points": {
+        "credits": "Credit Purchases: Within 7 days of purchase, if no credits have been used, you may request a full refund.",
+        "subscription": "Subscription Services: Within 7 days of subscription, if you are not satisfied with the service, you may request cancellation and receive a full refund. After 7 days, the subscription will be cancelled at the end of the current billing cycle.",
+        "technical": "Technical Issues: If technical failures prevent normal use of the service, we will provide appropriate compensation or refunds based on the impact.",
+        "violation": "Policy Violations: If account is banned due to violation of terms of service, no refund will be provided."
+      }
+    },
+    "process": {
+      "title": "Refund Process",
+      "steps": {
+        "request": "1. Submit Request: Send a refund request to contact@visionaryframe.com with your account information and order number.",
+        "review": "2. Review Process: We will complete the review within 3 business days of receiving your request.",
+        "approval": "3. Refund Execution: Once approved, the refund will be returned to your original payment account within 5-10 business days.",
+        "timeframe": "4. Processing Time: Depending on the payment channel, actual processing time may be 1-14 business days."
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "content": "If you have any questions or need to request a refund, please contact us:",
+      "button": "Send Refund Request"
+    }
+  },
+  "LandingFAQ": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Quick answers to common questions about VisionFrame",
+    "whatIs": {
+      "question": "What is VisionFrame?",
+      "answer": "VisionFrame is an AI video generation platform that allows you to generate high-quality videos in 3-5 minutes by simply entering text descriptions or uploading images. No video production experience required. Actual generation time varies based on complexity and queue."
+    },
+    "models": {
+      "question": "Which AI models are supported?",
+      "answer": "We support the most advanced AI video generation models in the industry, including Sora 2, Veo 3.1, Wan 2.6, Seedance 1.5 Pro, and more. We continuously update to the latest models."
+    },
+    "generationTime": {
+      "question": "How long does it take to generate a video?",
+      "answer": "Typically 3-5 minutes for completion. Actual time varies based on video duration, complexity, and current queue. Longer videos or higher quality may take more time."
+    },
+    "pricing": {
+      "question": "How does pricing work?",
+      "answer": "We use a credit-based system. New users receive 50 free credits to try. After using your free credits, you can purchase credit packages or subscribe to a plan. Your service will be paused if you run out of credits - no automatic charges unless you explicitly subscribe."
+    },
+    "quality": {
+      "question": "What is the video quality?",
+      "answer": "We support multiple resolutions including 720p, 1080p, and 4K output. The quality is suitable for social media, marketing, and other professional scenarios. Results vary based on prompt quality and reference materials."
+    },
+    "experience": {
+      "question": "Do I need professional video production experience?",
+      "answer": "Not at all! Simply describe the video content you want, and AI will automatically handle all the production work. Beginners can easily get started. Final quality varies based on prompt clarity and reference materials."
+    },
+    "prohibited": {
+      "question": "What content is prohibited?",
+      "answer": "We strictly prohibit generating content involving violence, pornography, hate speech, illegal activities, or infringement of others' copyright/portrait rights. Violations will result in account termination."
+    },
+    "responsibility": {
+      "question": "Who is responsible for generated content?",
+      "answer": "Users are fully responsible for all content they generate. We provide moderation and reporting channels at contact@visionaryframe.com. Ensure you have proper rights for uploaded materials and generated content."
+    },
+    "privacy": {
+      "question": "How is my data handled?",
+      "answer": "Your uploaded images/videos/text are stored securely and are never used for model training or internal optimization. You can delete your content at any time. Upon account deletion, all your data is permanently removed within 30 days. See our Privacy Policy for details."
+    },
+    "commercial": {
+      "question": "Can I use generated videos commercially?",
+      "answer": "Yes, for certain plans. Users must ensure they have appropriate rights to uploaded materials and generated content. Commercial use rights vary by plan - check your plan details. You are responsible for ensuring compliance with applicable laws."
+    }
   }
 }

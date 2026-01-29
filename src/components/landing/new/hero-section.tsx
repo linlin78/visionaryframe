@@ -3,10 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export function HeroSection() {
   const locale = useLocale();
+  const t = useTranslations("Hero");
 
   return (
     <section className="relative min-h-[700px] flex items-center justify-center overflow-hidden bg-[#0A0A0B]">
@@ -24,20 +25,23 @@ export function HeroSection() {
           >
             <div className="w-1.5 h-1.5 rounded-full bg-[#A855F7]" />
             <span className="text-sm font-medium text-[#A855F7]">
-              支持 Sora 2、Veo 3.1 等最新模型
+              {t("badge")}
             </span>
           </motion.div>
 
-          {/* Main Title */}
+          {/* Main Title - Auto split by comma */}
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white"
           >
-            一键生成精彩视频
-            <br />
-            人人都是创作者
+            {t("title").split(/，|,/).map((part: string, index: number) => (
+              <span key={index}>
+                {index > 0 && <br />}
+                {part}
+              </span>
+            ))}
           </motion.h1>
 
           {/* Subtitle */}
@@ -48,7 +52,7 @@ export function HeroSection() {
             className="text-xl text-[#A855F7] tracking-widest font-normal"
             style={{ letterSpacing: "0.2em" }}
           >
-            AI 视频创作平台
+            {t("subtitle")}
           </motion.p>
 
           {/* Description */}
@@ -58,9 +62,7 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-lg text-[#ADADB0] leading-relaxed max-w-2xl mx-auto"
           >
-            不需要任何专业技能，只需输入文字或上传图片，
-            <br />
-            AI 帮你在 3 分钟内生成专业级视频。
+            {t("description")}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -75,7 +77,7 @@ export function HeroSection() {
               className="group relative px-8 py-4 rounded-xl bg-gradient-to-r from-[#A855F7] to-[#C084FC] text-white font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
             >
               <span className="flex items-center gap-2">
-                免费开始创作
+                {t("startCreating")}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
@@ -86,7 +88,7 @@ export function HeroSection() {
             >
               <span className="flex items-center gap-2">
                 <Play className="w-4 h-4" />
-                查看示例
+                {t("viewExamples")}
               </span>
             </Link>
           </motion.div>

@@ -1,9 +1,10 @@
-import { HeroSection } from "@/components/landing/hero-section";
-import { FeaturesSection } from "@/components/landing/features-section";
-import { ShowcaseSection } from "@/components/landing/showcase-section";
-import { HowItWorks } from "@/components/landing/how-it-works-section";
-import { FAQSection } from "@/components/landing/faq-section";
-import { CTASection } from "@/components/landing/cta-section";
+import { HeroSection } from "@/components/landing/new/hero-section";
+import { HowItWorksSection } from "@/components/landing/new/how-it-works-section";
+import { FeaturesSection } from "@/components/landing/new/features-section";
+import { AIModelsVideoShowcase } from "@/components/landing/ai-models-video-showcase";
+import { FAQSection } from "@/components/landing/new/faq-section";
+import { CTASection } from "@/components/landing/new/cta-section";
+import { Footer } from "@/components/landing/new/footer";
 
 import type { Locale } from "@/config/i18n-config";
 
@@ -17,11 +18,12 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <>
       <HeroSection />
-      <ShowcaseSection />
+      <HowItWorksSection />
       <FeaturesSection />
-      <HowItWorks />
-      <CTASection />
+      <AIModelsVideoShowcase />
       <FAQSection />
+      <CTASection />
+      <Footer />
     </>
   );
 }

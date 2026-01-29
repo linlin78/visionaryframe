@@ -69,6 +69,14 @@ export function Footer() {
                     案例
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href={`/${locale}/ai-usage`}
+                    className="text-sm text-[#8B8B90] hover:text-[#A855F7] transition-colors"
+                  >
+                    AI 使用说明
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -127,12 +135,20 @@ export function Footer() {
             </div>
           </div>
 
+          {/* AI Disclaimer */}
+          <div className="mb-8 p-4 rounded-xl bg-[#141415] border border-[#1A1A1C]">
+            <p className="text-xs text-[#8B8B90] leading-relaxed text-center">
+              <strong className="text-white">AI Model Disclaimer:</strong> Video generation is powered by third-party AI models (Sora 2, Veo 3.1, Wan 2.6, Seedance 1.5 Pro).
+              Outputs may vary in quality and accuracy. Please review generated content before commercial use.
+            </p>
+          </div>
+
           {/* Bottom Section */}
           <div className="pt-8 border-t border-[#1A1A1C]">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               {/* Copyright */}
               <p className="text-sm text-[#6B6B70]">
-                © 2025 VisionFrame. All rights reserved.
+                © 2025 VisionFrame. All rights reserved. Made with care by VisionFrame Team.
               </p>
 
               {/* Social Links */}
