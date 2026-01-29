@@ -23,7 +23,8 @@
     "script:check-google-oauth": "dotenv -e .env.local -- tsx scripts/check-google-oauth.ts",
     "script:create-test-user": "dotenv -e .env.local -- tsx scripts/create-test-user.ts",
     "script:create-demo-user": "dotenv -e .env.local -- tsx scripts/create-demo-user.ts",
-    "script:fix-user-credits": "dotenv -e .env.local -- tsx scripts/fix-user-credits.ts"
+    "script:fix-user-credits": "dotenv -e .env.local -- tsx scripts/fix-user-credits.ts",
+    "script:test-proxy": "node scripts/test-proxy.mjs"
   },
   "dependencies": {
     "@creem_io/better-auth": "^0.0.12",
