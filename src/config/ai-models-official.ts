@@ -27,7 +27,10 @@ export const AI_MODELS_OFFICIAL = {
     // 封面图片
     thumbnail: "https://openai.com/images/sora-hero.jpg",
     // 标语
-    tagline: "Create videos from text or images",
+    tagline: "A massive dragon perched on a coastal cliff, overlooking a stormy ocean with lightning strikes and cinematic sunbeams, epic fantasy movie style. 一只巨大的西方巨龙盘旋在海边悬崖峭壁之上，远处波涛汹涌的海面上伴随着闪电和丁达尔效应，画面极具史诗感和奇幻电影风格。",
+    // 简化版提示词
+    shortPrompt: "Dragon on coastal cliff, stormy ocean, lightning, cinematic fantasy",
+    shortPromptZh: "龙在海岸悬崖上，风暴海洋，闪电，电影奇幻",
   },
 
   /** Wan 2.6 - Alibaba 通义万相 */
@@ -48,7 +51,10 @@ export const AI_MODELS_OFFICIAL = {
     // 封面图片（使用阿里云官方图片）
     thumbnail: "https://tongyi.aliyun.com/static/wanxiang-og.jpg",
     // 标语
-    tagline: "AI 视频与图像生成模型",
+    tagline: "Cinematic close-up of a golden retriever in sunglasses and a bandana sitting next to a cat with a scarf, talking and looking at each other, super realistic cinematic feel. 室内暖光下，一只戴墨镜和爱心头巾的金毛与一只戴围巾的短毛猫并排坐着，它们开口说话并互相看向对方，画面呈超写实电影感。",
+    // 简化版提示词
+    shortPrompt: "Golden retriever with sunglasses and cat with scarf, talking together, cinematic",
+    shortPromptZh: "戴墨镜金毛与围巾猫咪，对话互动，超写实电影感",
   },
 
   /** Veo 3.1 - Google DeepMind */
@@ -70,7 +76,10 @@ export const AI_MODELS_OFFICIAL = {
     // 封面图片
     thumbnail: "https://deepmind.google/models/veo/veo-hero.jpg",
     // 标语
-    tagline: "Video generation model for filmmakers",
+    tagline: "Cinematic shot tracking from inside a dark wooden barn through the open doors, revealing a cowboy riding a horse away into a golden wheat field at sunset. 镜头从昏暗的木质谷仓内部穿过大门，向外展示一名牛仔在夕阳余晖下骑马穿过金色麦田的背影，画面充满温暖的电影感。",
+    // 简化版提示词
+    shortPrompt: "Cowboy riding horse into golden wheat field at sunset, cinematic barn exit",
+    shortPromptZh: "牛仔骑马穿过金色麦田夕阳，谷仓镜头电影感",
   },
 
   /** Seedance 1.5 Pro - ByteDance */
@@ -96,7 +105,10 @@ export const AI_MODELS_OFFICIAL = {
     // 封面图片
     thumbnail: "https://seed.bytedance.com/static/seedance-hero.jpg",
     // 标语
-    tagline: "Multi-shot video generation model",
+    tagline: "POV from a futuristic spaceship cockpit as an astronaut navigates a high-speed transition into a vibrant hyperspace starfield. 太空驾驶舱：在飞船驾驶舱内部视角，宇航员正全神贯注地驾驶，窗外星光拉伸形成进入超空间跃迁的视觉效果。",
+    // 简化版提示词
+    shortPrompt: "Spaceship cockpit POV, hyperspace jump transition, sci-fi",
+    shortPromptZh: "飞船驾驶舱视角，超空间跃迁，科幻",
   },
 };
 

@@ -168,17 +168,15 @@ export function LandingHeader({ user }: { user?: User | null }) {
               {/* Docs Link */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <a
-                    href={headerDocs.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <LocaleLink
+                    href="/docs"
                     className={cn(
                       "group inline-flex h-10 w-max items-center justify-center gap-2 rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
                     )}
                   >
                     <BookOpen className="h-4 w-4" />
                     {t('Header.docs')}
-                  </a>
+                  </LocaleLink>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -359,15 +357,13 @@ export function LandingHeader({ user }: { user?: User | null }) {
                   </LocaleLink>
 
                   {/* Docs */}
-                  <a
-                    href={headerDocs.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <LocaleLink
+                    href="/docs"
                     className="flex items-center gap-2 font-semibold p-2 hover:bg-accent rounded-md transition-colors"
                   >
                     <BookOpen className="h-4 w-4" />
                     {t('Header.docs')}
-                  </a>
+                  </LocaleLink>
 
                   {/* Language */}
                   <div className="flex items-center gap-3 p-2">

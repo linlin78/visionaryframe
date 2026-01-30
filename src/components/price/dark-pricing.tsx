@@ -334,20 +334,38 @@ function PricingCard({
       </div>
 
       <div className="flex h-full flex-col justify-between gap-10 p-6">
-        <ul className="space-y-2 text-left text-sm font-medium leading-normal">
-          {features.map((feature, idx) => (
-            <li className="flex items-start" key={idx}>
-              {feature.included ? (
-                <Icons.Check className="mr-3 h-5 w-5 shrink-0 text-primary" />
-              ) : (
-                <Icons.Close className="mr-3 h-5 w-5 shrink-0 text-destructive" />
-              )}
-              <p className={cn(feature.included ? "text-foreground" : "text-muted-foreground")}>
-                {feature.text}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className="space-y-4">
+          <ul className="space-y-2 text-left text-sm font-medium leading-normal">
+            {features.map((feature, idx) => (
+              <li className="flex items-start" key={idx}>
+                {feature.included ? (
+                  <Icons.Check className="mr-3 h-5 w-5 shrink-0 text-primary" />
+                ) : (
+                  <Icons.Close className="mr-3 h-5 w-5 shrink-0 text-destructive" />
+                )}
+                <p className={cn(feature.included ? "text-foreground" : "text-muted-foreground")}>
+                  {feature.text}
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          {/* Subscription Details */}
+          {product.billingPeriod && (
+            <div className="mt-6 rounded-lg bg-muted/50 p-4 text-xs space-y-2">
+              <div className="flex items-start gap-2">
+                <Icons.Help className="h-4 w-4 shrink-0 text-muted-foreground mt-0.5" />
+                <div className="space-y-1.5 text-muted-foreground">
+                  <p>• {t("subscriptionDetails.autoRenewal")}</p>
+                  <p>• {t("subscriptionDetails.cancellation")}</p>
+                  <p>• {t("subscriptionDetails.creditsExpire")}</p>
+                  <p>• {t("subscriptionDetails.transferability")}</p>
+                  <p>• {t("subscriptionDetails.priceAdjustments")}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         {userId ? (
           isCurrent ? (

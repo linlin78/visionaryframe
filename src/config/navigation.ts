@@ -123,8 +123,8 @@ export const headerTools = [
 export const headerDocs = {
   id: "docs",
   title: "Docs",
-  href: "https://docs.visionframe.com",
-  external: true,
+  href: "/docs",
+  external: false,
 };
 
 // 用户菜单项 (HeaderSimple 组件使用)

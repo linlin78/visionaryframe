@@ -302,7 +302,14 @@
     "contact": "for support.",
     "contact_2": "We're here to help.",
     "manage_subscription": "Manage Subscription",
-    "upgrade": "Upgrade"
+    "upgrade": "Upgrade",
+    "subscriptionDetails": {
+      "autoRenewal": "Auto-renews monthly/yearly unless cancelled",
+      "cancellation": "Cancel anytime from account settings, no fees",
+      "creditsExpire": "Credits expire 365 days (one-time) or reset monthly (subscriptions)",
+      "transferability": "Credits cannot be transferred between accounts",
+      "priceAdjustments": "Prices may change with 30-day notice; your price is locked for current billing period"
+    }
   },
   "PricingFaq": {
     "faq": "Frequently Asked Questions",
@@ -520,27 +527,73 @@
       "title": "Refund Policy",
       "content": "At VisionFrame, we are committed to providing you with the highest quality AI video generation service. If you are not satisfied with our service, we have established a transparent and fair refund policy to protect your rights."
     },
-    "policy": {
+    "conditions": {
       "title": "Refund Conditions",
-      "points": {
-        "credits": "Credit Purchases: Within 7 days of purchase, if no credits have been used, you may request a full refund.",
-        "subscription": "Subscription Services: Within 7 days of subscription, if you are not satisfied with the service, you may request cancellation and receive a full refund. After 7 days, the subscription will be cancelled at the end of the current billing cycle.",
-        "technical": "Technical Issues: If technical failures prevent normal use of the service, we will provide appropriate compensation or refunds based on the impact.",
-        "violation": "Policy Violations: If account is banned due to violation of terms of service, no refund will be provided."
+      "refundable": {
+        "icon": "✓",
+        "label": "Refundable",
+        "items": [
+          "Unused credits within 7 days of purchase",
+          "Subscriptions within 7 days of first charge",
+          "Technical issues preventing service delivery"
+        ]
+      },
+      "nonRefundable": {
+        "icon": "✗",
+        "label": "Non-Refundable",
+        "items": [
+          "Used credits (partially or fully)",
+          "Subscription fees after 7-day period",
+          "Account termination due to policy violations"
+        ]
+      },
+      "conditional": {
+        "icon": "⚠",
+        "label": "Case-by-Case",
+        "items": [
+          "Partial usage with technical difficulties",
+          "Billing errors or duplicate charges",
+          "Service interruptions exceeding 24 hours"
+        ]
       }
     },
     "process": {
-      "title": "Refund Process",
-      "steps": {
-        "request": "1. Submit Request: Send a refund request to contact@visionaryframe.com with your account information and order number.",
-        "review": "2. Review Process: We will complete the review within 3 business days of receiving your request.",
-        "approval": "3. Refund Execution: Once approved, the refund will be returned to your original payment account within 5-10 business days.",
-        "timeframe": "4. Processing Time: Depending on the payment channel, actual processing time may be 1-14 business days."
-      }
+      "title": "Refund Process Timeline",
+      "steps": [
+        {
+          "step": "1",
+          "action": "Submit Request",
+          "time": "Same day"
+        },
+        {
+          "step": "2",
+          "action": "Review",
+          "time": "1-3 business days"
+        },
+        {
+          "step": "3",
+          "action": "Decision",
+          "time": "1 business day"
+        },
+        {
+          "step": "4",
+          "action": "Execution",
+          "time": "5-10 business days"
+        }
+      ],
+      "totalTime": "Total: 7-14 business days"
     },
     "contact": {
-      "title": "Contact Us",
-      "content": "If you have any questions or need to request a refund, please contact us:",
+      "title": "Contact Us for Refunds",
+      "primaryEmail": "contact@visionaryframe.com",
+      "responseTime": "We respond within 1 business day",
+      "requiredInfo": [
+        "Account email",
+        "Transaction ID",
+        "Reason for refund",
+        "Supporting documentation"
+      ],
+      "alternativeContact": "You can also submit refund requests through your account dashboard under Billing History",
       "button": "Send Refund Request"
     }
   },

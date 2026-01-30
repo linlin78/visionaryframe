@@ -107,35 +107,118 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-white mb-4">8. Third-Party Services</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">8. Acceptable Use Policy</h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">8.1 Acceptable Uses</h3>
+                  <p className="leading-relaxed">You may use our services for personal projects, commercial use (according to your plan), educational purposes, and creative experimentation.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">8.2 Prohibited Activities</h3>
+                  <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li>Illegal acts or content</li>
+                    <li>Harassment or harmful behavior</li>
+                    <li>Copyright or trademark infringement</li>
+                    <li>Deepfakes without consent</li>
+                    <li>Misinformation or fraudulent content</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">8.3 Consequences</h3>
+                  <p className="leading-relaxed">Violations may result in account suspension, content removal, permanent ban, or legal action.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">8.4 Reporting</h3>
+                  <p className="leading-relaxed">Report violations to <a href="mailto:contact@visionaryframe.com" className="text-[#A855F7] hover:underline">contact@visionaryframe.com</a>.</p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-white mb-4">9. User-Generated Content (UGC)</h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">9.1 Definition</h3>
+                  <p className="leading-relaxed">UGC includes text prompts, images, and videos uploaded by users for video generation.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">9.2 Purpose</h3>
+                  <p className="leading-relaxed">We use your content to process video generation requests, improve services, and ensure compliance with policies.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">9.3 Retention Period</h3>
+                  <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Active accounts:</strong> Retained for service duration</li>
+                    <li><strong>Deleted accounts:</strong> 30 days after deletion</li>
+                    <li><strong>Failed generations:</strong> 7 days</li>
+                    <li><strong>Transaction records:</strong> As required by law (minimum 7 years)</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">9.4 Data Sharing</h3>
+                  <p className="leading-relaxed mb-2">We share your content ONLY in these circumstances:</p>
+                  <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li><strong className="text-green-400">✓</strong> AI providers for video generation only</li>
+                    <li><strong className="text-green-400">✓</strong> As required by law</li>
+                    <li><strong className="text-green-400">✓</strong> To protect our rights or property</li>
+                    <li><strong className="text-green-400">✓</strong> In connection with business transfer</li>
+                    <li><strong className="text-red-400">✗</strong> NOT for third-party marketing</li>
+                    <li><strong className="text-red-400">✗</strong> NEVER sold to third parties</li>
+                    <li><strong className="text-red-400">✗</strong> AI providers prohibited from training</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">9.5 Ownership</h3>
+                  <p className="leading-relaxed">You retain ownership of all content you upload.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">9.6 Deletion Rights</h3>
+                  <p className="leading-relaxed">You can delete your content at any time through the "My Creations" page in your account.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">9.7 Content Moderation</h3>
+                  <p className="leading-relaxed">We review content for compliance with our Acceptable Use Policy and applicable laws.</p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-white mb-4">10. Third-Party Services</h2>
               <p className="leading-relaxed">
                 We use third-party services for payment processing (Creem, Stripe), authentication (Google), and data storage (R2/S3). These services have their own privacy policies, and we are not responsible for their practices.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-white mb-4">9. Children's Privacy</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">11. Children's Privacy</h2>
               <p className="leading-relaxed">
                 Our services are not intended for children under 13. We do not knowingly collect data from children under 13.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-white mb-4">10. International Data Transfers</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">12. International Data Transfers</h2>
               <p className="leading-relaxed">
                 Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place to protect your data.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-white mb-4">11. Changes to This Policy</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">13. Changes to This Policy</h2>
               <p className="leading-relaxed">
                 We may update this privacy policy from time to time. We will notify you of significant changes via email or prominent notice on our platform.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-white mb-4">12. Contact Us</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">14. Third-Party Disclaimer</h2>
+              <p className="leading-relaxed">
+                VisionFrame integrates with third-party AI models (Sora 2 by OpenAI, Veo 3.1 by Google DeepMind, Seedance 1.5 Pro by ByteDance, Wan 2.6 by Alibaba) and services (Creem, Stripe, Google OAuth). All third-party names, logos, and trademarks are the property of their respective owners. VisionFrame has no affiliation with, endorsement by, or connection to these third parties unless explicitly stated. We are not responsible for the content, policies, or practices of third-party websites or services.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-white mb-4">15. Contact Us</h2>
               <p className="leading-relaxed">
                 If you have questions about this policy or your data, please contact us at:
               </p>

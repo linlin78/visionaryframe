@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Twitter, Heart } from "lucide-react";
+import { Github, Twitter, Heart, Mail } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 
 import { cn } from "@/components/ui";
@@ -22,20 +22,11 @@ export function LandingFooter() {
       ],
     },
     {
-      title: t('company'),
-      links: [
-        { title: "About", href: "/about" },
-        { title: "Blog", href: "/blog" },
-        { title: "Careers", href: "/careers" },
-        { title: "Contact", href: "/contact" },
-      ],
-    },
-    {
       title: t('legal'),
       links: [
-        { title: "Privacy Policy", href: "/privacy" },
-        { title: "Terms of Service", href: "/terms" },
-        { title: "Cookie Policy", href: "/cookies" },
+        { title: "Privacy Policy", href: "/privacy-policy" },
+        { title: "Terms of Service", href: "/terms-of-service" },
+        { title: "Refund Policy", href: "/refund-policy" },
       ],
     },
   ];
@@ -69,8 +60,23 @@ export function LandingFooter() {
             <p className="text-sm text-muted-foreground mb-4">
               Transform your ideas into stunning videos with AI.
             </p>
-            {/* Social Links */}
-            <div className="flex items-center gap-3">
+
+            {/* Contact */}
+            <div className="space-y-2 mb-3">
+              <a
+                href="mailto:contact@visionaryframe.com"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Mail className="h-4 w-4" />
+                contact@visionaryframe.com
+              </a>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Currently only accepting questions via email. More official channels coming soon.
+              </p>
+            </div>
+
+            {/* Social Links - Hidden temporarily */}
+            {/* <div className="flex items-center gap-3">
               {socialLinks.map((link) => {
                 const Icon = link.icon;
                 return (
@@ -85,7 +91,7 @@ export function LandingFooter() {
                   </a>
                 );
               })}
-            </div>
+            </div> */}
           </div>
 
           {/* Footer Links */}

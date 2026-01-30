@@ -12,7 +12,7 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Main Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
             {/* Brand Column */}
             <div className="space-y-4">
               {/* Logo */}
@@ -38,6 +38,9 @@ export function Footer() {
                   <Mail className="w-4 h-4" />
                   contact@visionaryframe.com
                 </a>
+                <p className="text-xs text-[#6B6B70] leading-relaxed">
+                  目前仅通过邮箱受理问题，后续会开放更多官方渠道
+                </p>
               </div>
             </div>
 
@@ -75,29 +78,6 @@ export function Footer() {
                     className="text-sm text-[#8B8B90] hover:text-[#A855F7] transition-colors"
                   >
                     AI 使用说明
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Company Column */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-white">公司</h3>
-              <ul className="space-y-3">
-                <li>
-                  <Link
-                    href={`/${locale}/about`}
-                    className="text-sm text-[#8B8B90] hover:text-[#A855F7] transition-colors"
-                  >
-                    关于我们
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={`/${locale}/contact`}
-                    className="text-sm text-[#8B8B90] hover:text-[#A855F7] transition-colors"
-                  >
-                    联系我们
                   </Link>
                 </li>
               </ul>
@@ -151,8 +131,8 @@ export function Footer() {
                 © 2025 VisionFrame. All rights reserved. Made with care by VisionFrame Team.
               </p>
 
-              {/* Social Links */}
-              <div className="flex items-center gap-6">
+              {/* Social Links - Hidden temporarily */}
+              {/* <div className="flex items-center gap-6">
                 <a
                   href="https://twitter.com/visionframe"
                   target="_blank"
@@ -180,7 +160,7 @@ export function Footer() {
                 >
                   <MessageCircle className="w-5 h-5" />
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

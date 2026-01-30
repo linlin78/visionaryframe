@@ -162,26 +162,25 @@ export default function DemoPage() {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
           {[
-            { name: "Pollo AI", color: "#22c55e" },
-            { name: "Sora 2", color: "#000" },
-            { name: "Wan AI", color: "#8b5cf6" },
-            { name: "Kling AI", color: "#f59e0b" },
-            { name: "Seedance", color: "#ec4899" },
-            { name: "Hailuo AI", color: "#06b6d4" },
-            { name: "Vidu AI", color: "#8b5cf6" },
-            { name: "Google", color: "#4285f4" },
+            { name: "Sora 2", provider: "OpenAI", color: "#000" },
+            { name: "Wan 2.6", provider: "Alibaba", color: "#8b5cf6" },
+            { name: "Veo 3.1", provider: "Google", color: "#4285f4" },
+            { name: "Seedance", provider: "ByteDance", color: "#ec4899" },
           ].map((model) => (
             <div
               key={model.name}
-              className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 flex items-center gap-3"
+              className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 flex flex-col items-center gap-2"
             >
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm"
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-lg"
                 style={{ backgroundColor: model.color }}
               >
                 {model.name[0]}
               </div>
-              <span className="text-white text-sm">{model.name}</span>
+              <div className="text-center">
+                <div className="text-white text-sm font-medium">{model.name}</div>
+                <div className="text-zinc-500 text-xs">{model.provider}</div>
+              </div>
             </div>
           ))}
         </div>

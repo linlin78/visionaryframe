@@ -47,8 +47,18 @@ export default async function TermsOfServicePage({ params }: TermsOfServicePageP
               <h2 className="text-2xl font-bold text-white mb-4">3. Account Registration and Security</h2>
               <div className="space-y-4">
                 <p className="leading-relaxed"><strong className="text-white">3.1 Account Creation:</strong> You must provide accurate and complete information when creating an account.</p>
-                <p className="leading-relaxed"><strong className="text-white">3.2 Account Security:</strong> You are responsible for maintaining the confidentiality of your account credentials.</p>
+                <p className="leading-relaxed"><strong className="text-white">3.2 Account Security:</strong> You are responsible for maintaining the confidentiality of your account credentials. You are responsible for all activities that occur under your account. If you suspect any unauthorized use of your account, you must notify us immediately at contact@visionaryframe.com. We will take reasonable steps to assist (such as freezing accounts, resetting passwords), but we are not liable for losses resulting from your obvious negligence.</p>
                 <p className="leading-relaxed"><strong className="text-white">3.3 Age Requirement:</strong> You must be at least 13 years old to use this Service.</p>
+                <div className="leading-relaxed">
+                  <p className="text-white font-semibold mb-2">3.4 Account Responsibility</p>
+                  <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Monitor Account Activity:</strong> Regularly review your account activity and report suspicious behavior immediately</li>
+                    <li><strong>Device Security:</strong> Do not save passwords on public devices; always log out after use</li>
+                    <li><strong>Session Management:</strong> End active sessions when accessing from shared or public computers</li>
+                    <li><strong>Prompt Notification:</strong> Contact us immediately if you receive unexpected notifications or suspect unauthorized access</li>
+                    <li><strong>Consequences:</strong> You remain liable for all activities until you report unauthorized access</li>
+                  </ul>
+                </div>
               </div>
             </section>
 
@@ -173,6 +183,28 @@ export default async function TermsOfServicePage({ params }: TermsOfServicePageP
               <div className="space-y-2">
                 <p>Email: <a href="mailto:contact@visionaryframe.com" className="text-[#A855F7] hover:underline">contact@visionaryframe.com</a></p>
                 <p className="text-sm text-[#6B6B70]">We will respond to inquiries within 3 business days.</p>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-white mb-4">17. Account Security and Responsibility</h2>
+              <div className="space-y-4">
+                <p className="leading-relaxed"><strong className="text-white">17.1 User Obligations:</strong> You must maintain account security, promptly notify of unauthorized access, and cooperate with investigations.</p>
+                <p className="leading-relaxed"><strong className="text-white">17.2 Unauthorized Access:</strong> Report immediately; we provide reasonable assistance but limit liability for user negligence.</p>
+                <p className="leading-relaxed"><strong className="text-white">17.3 Shared Accounts:</strong> Account sharing is prohibited; each user must have their own account.</p>
+                <p className="leading-relaxed"><strong className="text-white">17.4 Cooperation:</strong> Users must assist in investigating unauthorized access or policy violations.</p>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-white mb-4">18. Rights Holder Complaint Process</h2>
+              <div className="space-y-4">
+                <p className="leading-relaxed"><strong className="text-white">18.1 Copyright Claims:</strong> We respect intellectual property rights and respond to DMCA complaints.</p>
+                <p className="leading-relaxed"><strong className="text-white">18.2 Submission:</strong> Submit complaints to <a href="mailto:contact@visionaryframe.com" className="text-[#A855F7] hover:underline">contact@visionaryframe.com</a> with required information.</p>
+                <p className="leading-relaxed"><strong className="text-white">18.3 Response Time:</strong> We will acknowledge receipt within 1-3 business days.</p>
+                <p className="leading-relaxed"><strong className="text-white">18.4 Actions:</strong> We may remove or disable access to allegedly infringing content pending investigation.</p>
+                <p className="leading-relaxed"><strong className="text-white">18.5 Counter-Notice:</strong> Users may submit counter-notices for wrongful removals.</p>
+                <p className="leading-relaxed"><strong className="text-white">18.6 Other IP Claims:</strong> Process for trademark, trade secret, and other IP claims available upon request.</p>
               </div>
             </section>
           </div>

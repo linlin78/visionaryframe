@@ -2,7 +2,7 @@
 
 import { Play, ArrowRight, Sparkles, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { BorderBeam } from "@/components/magicui/border-beam";
@@ -67,6 +67,7 @@ function YouTubeEmbed({ videoId, title, className = "" }: YouTubeEmbedProps) {
  */
 export function AIModelsVideoShowcase() {
   const t = useTranslations("Showcase");
+  const locale = useLocale();
 
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
@@ -174,16 +175,13 @@ export function AIModelsVideoShowcase() {
                       </div>
                     )}
 
-                    {/* 视频信息 */}
+                    {/* 视频信息 - 只保留提示词 */}
                     <div className="p-6">
                       <div className="flex items-start justify-between mb-3">
-                        <div className="flex-1">
-                          {/* 模型名称和提供商 */}
-                          <h3 className="text-xl font-bold mb-1 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-600 group-hover:to-purple-600 transition-all">
-                            {model.name}
-                          </h3>
-                          <p className="text-sm text-muted-foreground">{model.provider}</p>
-                        </div>
+                        {/* 提示词 */}
+                        <p className="text-sm text-muted-foreground flex-1 line-clamp-2">
+                          {locale === "zh" ? model.shortPromptZh : model.shortPrompt}
+                        </p>
 
                         {/* 原视频链接 - 仅对 YouTube 视频显示 */}
                         {hasYouTubeVideo && (
@@ -191,17 +189,12 @@ export function AIModelsVideoShowcase() {
                             href={model.youtubeUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-sm text-primary hover:underline flex-shrink-0"
+                            className="flex items-center gap-1 text-sm text-primary hover:underline flex-shrink-0 ml-2"
                           >
                             <ExternalLink className="w-4 h-4" />
                           </a>
                         )}
                       </div>
-
-                      {/* 标语 */}
-                      <p className="text-sm text-muted-foreground">
-                        {model.tagline}
-                      </p>
                     </div>
                   </div>
                 </motion.div>
