@@ -3,7 +3,12 @@ import { and, desc, eq, lt } from "drizzle-orm";
 import { nanoid } from "nanoid";
 import { getStorage } from "@/lib/storage";
 import { getModelConfig, calculateModelCredits } from "../config/credits";
-import { getProvider, type ProviderType, type VideoTaskResponse } from "../ai";
+import {
+  getProvider,
+  resolveProviderType,
+  type ProviderType,
+  type VideoTaskResponse,
+} from "../ai";
 import { creditService } from "./credit";
 import { generateSignedCallbackUrl } from "@/ai/utils/callback-signature";
 import { emitVideoEvent } from "@/lib/video-events";
@@ -48,6 +53,17 @@ export class VideoService {
     }
 
     const effectiveDuration = params.duration || modelConfig.durations[0] || 5;
+    const selectedProvider = resolveProviderType(
+      process.env.DEFAULT_AI_PROVIDER,
+      modelConfig.provider
+    );
+    console.info("[video.generate] Selected AI provider", {
+      provider: selectedProvider,
+      model: params.model,
+      defaultProvider: process.env.DEFAULT_AI_PROVIDER || null,
+      modelProvider: modelConfig.provider,
+    });
+    const provider = getProvider(selectedProvider);
 
     const outputNumber = Math.max(1, params.outputNumber ?? 1);
     const creditsRequired = calculateModelCredits(params.model, {
@@ -86,7 +102,7 @@ export class VideoService {
         creditsUsed: creditsRequired,
         duration: effectiveDuration,
         aspectRatio: params.aspectRatio || null,
-        provider: modelConfig.provider,
+        provider: selectedProvider,
         updatedAt: new Date(),
       })
       .returning({ uuid: videos.uuid, id: videos.id });
@@ -128,12 +144,20 @@ export class VideoService {
 
     // ✅ 支持通过环境变量选择 provider
     // 优先级: 环境变量 > 模型配置
-    const defaultProvider = (process.env.DEFAULT_AI_PROVIDER as ProviderType) || modelConfig.provider;
-    const provider = getProvider(defaultProvider);
+    console.info("[video.generate] Creating AI video task", {
+      videoUuid: videoResult.uuid,
+      provider: selectedProvider,
+      model: params.model,
+      duration: effectiveDuration,
+      aspectRatio: params.aspectRatio,
+      hasImageInput,
+      outputNumber,
+      creditsRequired,
+    });
 
     const callbackUrl = this.callbackBaseUrl
       ? generateSignedCallbackUrl(
-        `${this.callbackBaseUrl}/${defaultProvider}`,  // ✅ 使用实际选择的 provider
+        `${this.callbackBaseUrl}/${selectedProvider}`,
         videoResult.uuid
       )
       : undefined;
@@ -158,14 +182,22 @@ export class VideoService {
         .set({
           status: VideoStatus.GENERATING,
           externalTaskId: result.taskId,
+          provider: selectedProvider,
           updatedAt: new Date(),
         })
         .where(eq(videos.uuid, videoResult.uuid));
 
+      console.info("[video.generate] AI video task created", {
+        videoUuid: videoResult.uuid,
+        provider: selectedProvider,
+        model: params.model,
+        taskId: result.taskId,
+      });
+
       return {
         videoUuid: videoResult.uuid,
         taskId: result.taskId,
-        provider: defaultProvider,  // ✅ 返回实际使用的 provider
+        provider: selectedProvider,
         status: "GENERATING",
         estimatedTime: result.estimatedTime,
         creditsUsed: creditsRequired,
@@ -181,6 +213,13 @@ export class VideoService {
           updatedAt: new Date(),
         })
         .where(eq(videos.uuid, videoResult.uuid));
+
+      console.error("[video.generate] AI video task creation failed", {
+        videoUuid: videoResult.uuid,
+        provider: selectedProvider,
+        model: params.model,
+        error: error instanceof Error ? error.message : String(error),
+      });
       throw error;
     }
   }
