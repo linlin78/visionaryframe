@@ -26,15 +26,15 @@ export const textToVideoConfig: ToolPageConfig = {
     uiMode: "compact",
 
     defaults: {
-      model: "sora-2",
-      duration: 10,
+      model: "seedance-2.0-mini",
+      duration: 5,
       aspectRatio: "16:9",
       outputNumber: 1,
     },
 
     models: {
-      available: ["sora-2", "veo-3.1", "wan2.6", "seedance-1.5-pro"],
-      default: "sora-2",
+      available: ["seedance-2.0-mini", "wan-2.5", "sora-2"],
+      default: "seedance-2.0-mini",
     },
 
     features: {
@@ -52,7 +52,7 @@ export const textToVideoConfig: ToolPageConfig = {
       showOutputNumber: false,
       showAudioGeneration: true,
 
-      durations: [5, 10, 15],
+      durations: [4, 5, 8, 10, 12],
       aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
     },
   },

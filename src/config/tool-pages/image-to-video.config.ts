@@ -26,15 +26,15 @@ export const imageToVideoConfig: ToolPageConfig = {
     uiMode: "compact",
 
     defaults: {
-      model: "wan2.6",
-      duration: 10,
+      model: "sora-2",
+      duration: 4,
       aspectRatio: "16:9",
       outputNumber: 1,
     },
 
     models: {
-      available: ["wan2.6", "seedance-1.5-pro", "sora-2", "veo-3.1"],
-      default: "wan2.6",
+      available: ["sora-2"],
+      default: "sora-2",
     },
 
     features: {
@@ -52,8 +52,8 @@ export const imageToVideoConfig: ToolPageConfig = {
       showOutputNumber: false,
       showAudioGeneration: false,
 
-      durations: [5, 10, 15],
-      aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+      durations: [4, 8, 12],
+      aspectRatios: ["16:9", "9:16"],
     },
   },
 

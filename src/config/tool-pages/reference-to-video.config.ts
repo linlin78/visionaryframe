@@ -25,15 +25,15 @@ export const referenceToVideoConfig: ToolPageConfig = {
     uiMode: "compact",
 
     defaults: {
-      model: "wan2.6",
-      duration: 10,
+      model: undefined,
+      duration: undefined,
       aspectRatio: "same-as-original",
       outputNumber: 1,
     },
 
     models: {
-      available: ["wan2.6"],
-      default: "wan2.6",
+      available: [],
+      default: undefined,
     },
 
     features: {

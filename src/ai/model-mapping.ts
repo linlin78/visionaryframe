@@ -133,7 +133,7 @@ function evolinkParamsTransformer(
   const result: Record<string, any> = {
     ...params,
     aspect_ratio: params.aspectRatio || "16:9",
-    duration: params.duration || 10,
+    duration: params.duration || 5,
     remove_watermark: params.removeWatermark ?? true,
     callback_url: params.callbackUrl,
     quality,
@@ -151,12 +151,13 @@ function evolinkParamsTransformer(
   delete result.generateAudio;
 
   // Model-specific adjustments
-  if (internalModelId === "wan2.6") {
-    // Wan 2.6 uses quality instead of remove_watermark
-    if (params.quality) {
-      result.quality = quality;
-      delete result.remove_watermark;
-    }
+  if (internalModelId === "sora-2") {
+    delete result.quality;
+  }
+
+  if (internalModelId === "seedance-2.0-mini" || internalModelId === "wan-2.5") {
+    // Safety-test build uses the official text-to-video model IDs only.
+    delete result.image_urls;
   }
 
   return result;
@@ -265,128 +266,69 @@ export const MODEL_MAPPINGS: Record<string, ModelMapping> = {
     displayName: "Sora 2",
     providers: {
       evolink: {
-        providerModelId: "sora-2",
+        providerModelId: "sora-2-preview",
         supported: true,
         transformParams: evolinkParamsTransformer,
-      },
-      kie: {
-        providerModelId: (params: any) =>
-          (Array.isArray(params.imageUrls) && params.imageUrls.length > 0) || params.imageUrl
-            ? "sora-2-image-to-video"
-            : "sora-2-text-to-video",
-        supported: true,
-        transformParams: kieParamsTransformer,
       },
     },
   },
 
   // -------------------------------------------------------------------------
-  // Wan 2.6
+  // Seedance 2.0 Mini
   // -------------------------------------------------------------------------
-  "wan2.6": {
-    internalId: "wan2.6",
-    displayName: "Wan 2.6",
+  "seedance-2.0-mini": {
+    internalId: "seedance-2.0-mini",
+    displayName: "Seedance 2.0 Mini",
     providers: {
       evolink: {
-        providerModelId: (params: any) => {
-          // Select model based on mode
-          if (params.mode === "reference-to-video") {
-            return "wan2.6-reference-video";
-          }
-          const hasImage =
-            (Array.isArray(params.imageUrls) && params.imageUrls.length > 0) || params.imageUrl;
-          return hasImage ? "wan2.6-image-to-video" : "wan2.6-text-to-video";
-        },
+        providerModelId: "seedance-2.0-mini-text-to-video",
         supported: true,
         transformParams: evolinkParamsTransformer,
-      },
-      kie: {
-        providerModelId: (params: any) => {
-          // Select model based on mode
-          if (params.mode === "reference-to-video") {
-            return "wan/2-6-video-to-video";
-          }
-          const hasImage =
-            (Array.isArray(params.imageUrls) && params.imageUrls.length > 0) || params.imageUrl;
-          return hasImage ? "wan/2-6-image-to-video" : "wan/2-6-text-to-video";
-        },
-        supported: true,
-        transformParams: kieParamsTransformer,
       },
     },
   },
 
   // -------------------------------------------------------------------------
-  // Veo 3.1
+  // Wan 2.5
   // -------------------------------------------------------------------------
-  "veo-3.1": {
-    internalId: "veo-3.1",
-    displayName: "Veo 3.1",
+  "wan-2.5": {
+    internalId: "wan-2.5",
+    displayName: "Wan 2.5",
     providers: {
       evolink: {
-        providerModelId: "veo3.1-fast",
+        providerModelId: "wan2.5-text-to-video",
         supported: true,
         transformParams: evolinkParamsTransformer,
-      },
-      kie: {
-        providerModelId: (params: any) => {
-          const quality = String(params.quality || "").toLowerCase();
-          if (quality === "high" || quality === "1080p" || quality === "4k") {
-            return "veo3";
-          }
-          return "veo3_fast";
-        },
-        apiEndpoint: "/api/v1/veo/generate", // Different endpoint
-        supported: true,
-        transformParams: (internalModelId, params) => {
-          // Veo 3.1 has a different structure on KIE
-          const imageUrls = Array.isArray(params.imageUrls)
-            ? params.imageUrls
-            : params.imageUrl
-              ? [params.imageUrl]
-              : undefined;
-
-          const result: Record<string, any> = {
-            prompt: params.prompt,
-            aspect_ratio: params.aspectRatio || "16:9",
-            callBackUrl: params.callbackUrl,
-          };
-
-          if (imageUrls && imageUrls.length > 0) {
-            result.imageUrls = imageUrls;
-          }
-
-          // Determine generation type (only if explicitly provided)
-          if (params.mode === "frames-to-video") {
-            result.generationType = "FIRST_AND_LAST_FRAMES_2_VIDEO";
-          } else if (params.mode === "reference-to-video") {
-            result.generationType = "REFERENCE_2_VIDEO";
-          } else if (params.mode === "text-to-video") {
-            result.generationType = "TEXT_2_VIDEO";
-          }
-
-          return result;
-        },
       },
     },
   },
 
   // -------------------------------------------------------------------------
-  // Seedance 1.5 Pro
+  // Seedance 2.0
   // -------------------------------------------------------------------------
-  "seedance-1.5-pro": {
-    internalId: "seedance-1.5-pro",
-    displayName: "Seedance 1.5 Pro",
+  "seedance-2.0": {
+    internalId: "seedance-2.0",
+    displayName: "Seedance 2.0",
     providers: {
       evolink: {
-        providerModelId: "seedance-1.5-pro",
-        supported: true,
+        providerModelId: "seedance-2.0-text-to-video",
+        supported: false,
         transformParams: evolinkParamsTransformer,
       },
-      kie: {
-        providerModelId: "bytedance/seedance-1.5-pro",
-        supported: true,
-        transformParams: kieParamsTransformer,
+    },
+  },
+
+  // -------------------------------------------------------------------------
+  // Kling 3.0
+  // -------------------------------------------------------------------------
+  "kling-3.0": {
+    internalId: "kling-3.0",
+    displayName: "Kling 3.0",
+    providers: {
+      evolink: {
+        providerModelId: "kling-v3-text-to-video",
+        supported: false,
+        transformParams: evolinkParamsTransformer,
       },
     },
   },

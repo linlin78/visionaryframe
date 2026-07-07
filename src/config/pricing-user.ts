@@ -1,37 +1,37 @@
-/**
+﻿/**
  * ============================================
- * 用户配置文件 - 价格和积分
+ * 鐢ㄦ埛閰嶇疆鏂囦欢 - 浠锋牸鍜岀Н鍒?
  * ============================================
  *
- * 📖 使用指南
+ * 馃摉 浣跨敤鎸囧崡
  * -----------
- * 这个文件包含了所有与价格、积分相关的配置。
+ * 杩欎釜鏂囦欢鍖呭惈浜嗘墍鏈変笌浠锋牸銆佺Н鍒嗙浉鍏崇殑閰嶇疆銆?
  *
- * 🎯 主要配置项：
- * 1. 基础设置 - 新用户赠送、过期规则
- * 2. 订阅产品 - 月付/年付订阅价格和积分
- * 3. 积分包 - 一次性购买积分包
- * 4. 模型计费 - 各 AI 模型的积分消耗规则
+ * 馃幆 涓昏閰嶇疆椤癸細
+ * 1. 鍩虹璁剧疆 - 鏂扮敤鎴疯禒閫併€佽繃鏈熻鍒?
+ * 2. 璁㈤槄浜у搧 - 鏈堜粯/骞翠粯璁㈤槄浠锋牸鍜岀Н鍒?
+ * 3. 绉垎鍖?- 涓€娆℃€ц喘涔扮Н鍒嗗寘
+ * 4. 妯″瀷璁¤垂 - 鍚?AI 妯″瀷鐨勭Н鍒嗘秷鑰楄鍒?
  *
- * 📝 修改方法：
- * - 直接修改下面的数值即可（价格用美元，不是美分）
- * - 保存后自动生效，无需重启服务器
- * - 要禁用某个产品，将 enabled 改为 false
+ * 馃摑 淇敼鏂规硶锛?
+ * - 鐩存帴淇敼涓嬮潰鐨勬暟鍊煎嵆鍙紙浠锋牸鐢ㄧ編鍏冿紝涓嶆槸缇庡垎锛?
+ * - 淇濆瓨鍚庤嚜鍔ㄧ敓鏁堬紝鏃犻渶閲嶅惎鏈嶅姟鍣?
+ * - 瑕佺鐢ㄦ煇涓骇鍝侊紝灏?enabled 鏀逛负 false
  *
- * ⚠️ 注意事项：
- * - 不要修改 id 字段（用于数据库关联）
- * - 价格使用美元单位（如 9.9 表示 $9.90）
- * - 积分数量是整数
- * - allowFreeUser: 是否允许免费用户购买（可选，默认 true）
+ * 鈿狅笍 娉ㄦ剰浜嬮」锛?
+ * - 涓嶈淇敼 id 瀛楁锛堢敤浜庢暟鎹簱鍏宠仈锛?
+ * - 浠锋牸浣跨敤缇庡厓鍗曚綅锛堝 9.9 琛ㄧず $9.90锛?
+ * - 绉垎鏁伴噺鏄暣鏁?
+ * - allowFreeUser: 鏄惁鍏佽鍏嶈垂鐢ㄦ埛璐拱锛堝彲閫夛紝榛樿 true锛?
  *
  * ============================================
  */
 
 // ============================================
-// 类型定义（内部使用）
+// 绫诲瀷瀹氫箟锛堝唴閮ㄤ娇鐢級
 // ============================================
 
-/** 视频模型积分配置 */
+/** 瑙嗛妯″瀷绉垎閰嶇疆 */
 export interface VideoModelPricing {
   baseCredits: number;
   perSecond: number;
@@ -39,7 +39,7 @@ export interface VideoModelPricing {
   enabled: boolean;
 }
 
-/** 订阅产品配置 */
+/** 璁㈤槄浜у搧閰嶇疆 */
 export interface SubscriptionProductConfig {
   id: string;
   name: string;
@@ -51,7 +51,7 @@ export interface SubscriptionProductConfig {
   features?: string[];
 }
 
-/** 积分包配置 */
+/** 绉垎鍖呴厤缃?*/
 export interface CreditPackageConfig {
   id: string;
   name: string;
@@ -59,57 +59,57 @@ export interface CreditPackageConfig {
   credits: number;
   popular?: boolean;
   enabled: boolean;
-  /** 是否允许免费用户购买（可选，默认 true） */
+  /** 鏄惁鍏佽鍏嶈垂鐢ㄦ埛璐拱锛堝彲閫夛紝榛樿 true锛?*/
   allowFreeUser?: boolean;
   features?: string[];
 }
 
 // ============================================
-// 一、基础设置
+// 涓€銆佸熀纭€璁剧疆
 // ============================================
 
 /**
- * 新用户注册赠送积分
+ * 鏂扮敤鎴锋敞鍐岃禒閫佺Н鍒?
  */
 export const NEW_USER_GIFT = {
-  /** 是否启用赠送 */
+  /** 鏄惁鍚敤璧犻€?*/
   enabled: true,
-  /** 赠送积分数量 */
+  /** 璧犻€佺Н鍒嗘暟閲?*/
   credits: 50,
-  /** 积分有效期（天）*/
+  /** 绉垎鏈夋晥鏈燂紙澶╋級*/
   validDays: 30,
 };
 
 /**
- * 积分过期设置
+ * 绉垎杩囨湡璁剧疆
  */
 export const CREDIT_EXPIRATION = {
-  /** 订阅积分有效期（天）- 月付用户 */
+  /** 璁㈤槄绉垎鏈夋晥鏈燂紙澶╋級- 鏈堜粯鐢ㄦ埛 */
   subscriptionDays: 30,
-  /** 一次性购买积分有效期（天）- 单独购买积分包 */
+  /** 涓€娆℃€ц喘涔扮Н鍒嗘湁鏁堟湡锛堝ぉ锛? 鍗曠嫭璐拱绉垎鍖?*/
   purchaseDays: 365,
-  /** 提前多少天提醒积分即将过期 */
+  /** 鎻愬墠澶氬皯澶╂彁閱掔Н鍒嗗嵆灏嗚繃鏈?*/
   warnBeforeDays: 7,
 };
 
 // ============================================
-// 二、订阅产品配置
+// 浜屻€佽闃呬骇鍝侀厤缃?
 // ============================================
 
 /**
- * 订阅产品列表
+ * 璁㈤槄浜у搧鍒楄〃
  *
- * 每个产品包含：
- * - id: 产品唯一标识（不要改）
- * - name: 显示名称
- * - priceUsd: 价格（美元）
- * - credits: 每周期赠送积分
- * - period: 付费周期 ("month" 或 "year")
- * - popular: 是否标记为推荐（最多选1-2个）
- * - enabled: 是否启用该产品
+ * 姣忎釜浜у搧鍖呭惈锛?
+ * - id: 浜у搧鍞竴鏍囪瘑锛堜笉瑕佹敼锛?
+ * - name: 鏄剧ず鍚嶇О
+ * - priceUsd: 浠锋牸锛堢編鍏冿級
+ * - credits: 姣忓懆鏈熻禒閫佺Н鍒?
+ * - period: 浠樿垂鍛ㄦ湡 ("month" 鎴?"year")
+ * - popular: 鏄惁鏍囪涓烘帹鑽愶紙鏈€澶氶€?-2涓級
+ * - enabled: 鏄惁鍚敤璇ヤ骇鍝?
  */
 export const SUBSCRIPTION_PRODUCTS = [
-  // ===== 月付订阅 =====
+  // ===== 鏈堜粯璁㈤槄 =====
   {
     id: "basic_monthly",
     name: "Basic Plan",
@@ -126,7 +126,7 @@ export const SUBSCRIPTION_PRODUCTS = [
     priceUsd: 29.9,
     credits: 500,
     period: "month" as const,
-    popular: true, // 推荐
+    popular: true, // 鎺ㄨ崘
     enabled: true,
     features: ["hd_videos", "fast_generation", "no_watermark", "commercial_use"],
   },
@@ -141,12 +141,12 @@ export const SUBSCRIPTION_PRODUCTS = [
     features: ["hd_videos", "fast_generation", "no_watermark", "commercial_use", "priority_support", "api_access"],
   },
 
-  // ===== 年付订阅 =====
+  // ===== 骞翠粯璁㈤槄 =====
   {
     id: "basic_yearly",
     name: "Basic Plan (Yearly)",
     priceUsd: 99,
-    credits: 1200, // 100 × 12 月
+    credits: 1200, // 100 脳 12 鏈?
     period: "year" as const,
     popular: false,
     enabled: true,
@@ -156,7 +156,7 @@ export const SUBSCRIPTION_PRODUCTS = [
     id: "pro_yearly",
     name: "Pro Plan (Yearly)",
     priceUsd: 299,
-    credits: 6000, // 500 × 12 月
+    credits: 6000, // 500 脳 12 鏈?
     period: "year" as const,
     popular: true,
     enabled: true,
@@ -166,7 +166,7 @@ export const SUBSCRIPTION_PRODUCTS = [
     id: "team_yearly",
     name: "Team Plan (Yearly)",
     priceUsd: 999,
-    credits: 24000, // 2000 × 12 月
+    credits: 24000, // 2000 脳 12 鏈?
     period: "year" as const,
     popular: false,
     enabled: true,
@@ -175,18 +175,18 @@ export const SUBSCRIPTION_PRODUCTS = [
 ];
 
 // ============================================
-// 三、一次性购买积分包
+// 涓夈€佷竴娆℃€ц喘涔扮Н鍒嗗寘
 // ============================================
 
 /**
- * 积分包产品列表
+ * 绉垎鍖呬骇鍝佸垪琛?
  *
- * 用户可以单独购买积分包（不订阅）
+ * 鐢ㄦ埛鍙互鍗曠嫭璐拱绉垎鍖咃紙涓嶈闃咃級
  *
- * allowFreeUser 说明：
- * - true:  所有用户都可以购买此积分包
- * - false: 只有订阅用户才能购买此积分包
- * - 不填: 默认为 true（所有用户可购买）
+ * allowFreeUser 璇存槑锛?
+ * - true:  鎵€鏈夌敤鎴烽兘鍙互璐拱姝ょН鍒嗗寘
+ * - false: 鍙湁璁㈤槄鐢ㄦ埛鎵嶈兘璐拱姝ょН鍒嗗寘
+ * - 涓嶅～: 榛樿涓?true锛堟墍鏈夌敤鎴峰彲璐拱锛?
  */
 export const CREDIT_PACKAGES: CreditPackageConfig[] = [
   {
@@ -196,7 +196,7 @@ export const CREDIT_PACKAGES: CreditPackageConfig[] = [
     credits: 100,
     popular: false,
     enabled: true,
-    allowFreeUser: true, // 免费用户可购买
+    allowFreeUser: true, // 鍏嶈垂鐢ㄦ埛鍙喘涔?
     features: ["hd_videos", "fast_generation"],
   },
   {
@@ -204,7 +204,7 @@ export const CREDIT_PACKAGES: CreditPackageConfig[] = [
     name: "Standard Pack",
     priceUsd: 19.9,
     credits: 250,
-    popular: true, // 推荐
+    popular: true, // 鎺ㄨ崘
     enabled: true,
     allowFreeUser: true,
     features: ["hd_videos", "fast_generation", "no_watermark"],
@@ -222,56 +222,53 @@ export const CREDIT_PACKAGES: CreditPackageConfig[] = [
 ];
 
 // ============================================
-// 四、AI 模型积分计费
+// 鍥涖€丄I 妯″瀷绉垎璁¤垂
 // ============================================
 
 /**
- * 视频生成模型积分配置
- *
- * 💡 定价说明（基于 Evolink 1:1 成本，向上取整）:
- *
- * 1. **Sora 2 Lite**: 10s=2积分, 15s=3积分 (无水印)
- * 2. **Wan 2.6**: 720p: 5s=25积分, 10s=50积分, 15s=75积分
- *              1080p × 1.67 倍
- * 3. **Veo 3.1 Fast Lite**: 固定 10积分 (720p/1080p)
- * 4. **Seedance 1.5 Pro**: 按秒计费, 默认有音频
- *                          480p: 1.636 Credits/秒 → 2 积分/秒
- *                          720p: 3.557 Credits/秒 → 4 积分/秒
- *                          1080p: 7.932 Credits/秒 → 8 积分/秒
- *
- * 计费规则说明：
- * - baseCredits: 基础积分（最短时长、最低画质）
- * - perSecond: 每秒积分（用于按秒计费的模型）
- * - qualityMultiplier: 画质乘数（1080p vs 720p）
+ * Video generation model pricing.
+ * Current core EvoLink model set:
+ * - Seedance 2.0 Mini: low-cost testing model
+ * - Wan 2.5: low-cost short video model
+ * - Seedance 2.0: main paid generation model
+ * - Kling 3.0: high-quality short video model
+ * - Sora 2: premium model, priced above EvoLink cost
  */
 export const VIDEO_MODEL_PRICING: Record<string, VideoModelPricing> = {
-  /** Sora 2 Lite - OpenAI */
+  /** Seedance 2.0 Mini - low-cost testing / fast mode */
+  "seedance-2.0-mini": {
+    baseCredits: 35,      // 5s * 7 credits/sec
+    perSecond: 7,
+    enabled: true,
+  },
+
+  /** Wan 2.5 - low-cost short video / fast mode */
+  "wan-2.5": {
+    baseCredits: 10,      // 5s * 2 credits/sec
+    perSecond: 2,
+    enabled: true,
+  },
+
+  /** Seedance 2.0 - main paid generation / quality mode */
+  "seedance-2.0": {
+    baseCredits: 16,      // 4s * 4 credits/sec
+    perSecond: 4,
+    qualityMultiplier: 2,
+    enabled: false,
+  },
+
+  /** Kling 3.0 - high-quality short video / quality mode */
+  "kling-3.0": {
+    baseCredits: 30,      // 5s * 6 credits/sec
+    perSecond: 6,
+    qualityMultiplier: 1.5,
+    enabled: false,
+  },
+
+  /** Sora 2 - premium. 4s=26, 8s=52, 12s=78 */
   "sora-2": {
-    baseCredits: 2,       // 10秒 = 2积分 (1.6 Credits 向上取整)
-    perSecond: 0,         // 固定价格
-    enabled: true,
-  },
-
-  /** Wan 2.6 - 阿里通义万象 2.6 */
-  "wan2.6": {
-    baseCredits: 156,     // 5秒 720p = 156积分
-    perSecond: 78,        // 每额外秒 = 78积分
-    qualityMultiplier: 1.67, // 1080p = 720p × 1.67
-    enabled: true,
-  },
-
-  /** Veo 3.1 Fast - Google DeepMind 快速版本 */
-  "veo-3.1": {
-    baseCredits: 60,      // 固定 60积分（8秒视频，不按时长）
-    perSecond: 0,
-    enabled: true,
-  },
-
-  /** Seedance 1.5 Pro - 按秒计费（默认有音频） */
-  "seedance-1.5-pro": {
-    baseCredits: 0,       // 不使用 baseCredits
-    perSecond: 4,         // 720p 有音频: 3.557 Credits/秒 → 4 积分/秒
-    qualityMultiplier: 2, // 1080p = 720p × 2 (7.932 / 3.557 ≈ 2.23, 向上取整为 2)
+    baseCredits: 26,      // 4s * 6.5 credits/sec
+    perSecond: 6.5,
     enabled: true,
   },
 };
@@ -281,15 +278,15 @@ export const VIDEO_MODEL_PRICING: Record<string, VideoModelPricing> = {
 // ============================================
 
 /**
- * 支付提供商配置
+ * 鏀粯鎻愪緵鍟嗛厤缃?
  *
- * 这些配置通常在 .env.local 文件中设置
- * 这里只是说明，不需要修改
+ * 杩欎簺閰嶇疆閫氬父鍦?.env.local 鏂囦欢涓缃?
+ * 杩欓噷鍙槸璇存槑锛屼笉闇€瑕佷慨鏀?
  */
 export const PAYMENT_CONFIG = {
-  /** 使用 Creem 支付 */
+  /** 浣跨敤 Creem 鏀粯 */
   provider: "creem",
-  /** 支付成功后的回调地址（自动生成）*/
+  /** 鏀粯鎴愬姛鍚庣殑鍥炶皟鍦板潃锛堣嚜鍔ㄧ敓鎴愶級*/
   webhookUrl: process.env.NEXT_PUBLIC_APP_URL
     ? `${process.env.NEXT_PUBLIC_APP_URL}/api/v1/credit/callback`
     : "",

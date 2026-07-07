@@ -89,7 +89,7 @@ export function adaptToolPageConfigToGeneratorConfig(
   // 转换时长、宽高比等配置
   const durations = generator.settings.durations?.map((d) => `${d}s`) ||
     availableVideoModels[0]?.durations ||
-    ["5s", "10s", "15s"];
+    ["4s", "5s", "8s", "10s", "12s"];
 
   const aspectRatios = generator.settings.aspectRatios ||
     availableVideoModels[0]?.aspectRatios ||

@@ -1,8 +1,8 @@
 /**
  * Video Credit Calculator
  *
- * 统一的视频生成积分计算逻辑
- * 前端和后端使用相同的计算规则，确保一致性
+ * 缁熶竴鐨勮棰戠敓鎴愮Н鍒嗚绠楅€昏緫
+ * 鍓嶇鍜屽悗绔娇鐢ㄧ浉鍚岀殑璁＄畻瑙勫垯锛岀‘淇濅竴鑷存€?
  */
 
 import type { VideoModel } from "@/components/video-generator";
@@ -24,21 +24,21 @@ export interface CreditCalculationParams {
 // Parser Functions
 // ============================================================================
 
-/** 解析时长字符串 "5s" -> 5 */
+/** 瑙ｆ瀽鏃堕暱瀛楃涓?"5s" -> 5 */
 export function parseDuration(duration?: string): number {
   if (!duration) return 0;
   const match = duration.match(/^(\d+)s?$/);
   return match ? Number.parseInt(match[1], 10) : 0;
 }
 
-/** 解析分辨率 "720P" -> 720 */
+/** 瑙ｆ瀽鍒嗚鲸鐜?"720P" -> 720 */
 export function parseResolution(resolution?: string): number {
   if (!resolution) return 720;
   const match = resolution.match(/^(\d+)P?$/i);
   return match ? Number.parseInt(match[1], 10) : 720;
 }
 
-/** 判断是否为高质量 */
+/** 鍒ゆ柇鏄惁涓洪珮璐ㄩ噺 */
 export function isHighQuality(resolution?: string, quality?: string): boolean {
   const res = parseResolution(resolution);
   return res >= 1080 || quality === "high";
@@ -48,105 +48,32 @@ export function isHighQuality(resolution?: string, quality?: string): boolean {
 // Model-specific Calculators
 // ============================================================================
 
-/**
- * Sora 2 Lite 积分计算（基于 Evolink 1:1 成本）
- * 有水印: 10s = 1.6 Credits, 15s = 2.6 Credits
- * 无水印: 10s = 2.6 Credits, 15s = 3.6 Credits
- *
- * 计算公式: 向上取整(基础价)
- */
-function calculateSora2Credits(params: CreditCalculationParams): number {
-  const duration = parseDuration(params.duration);
-  const removeWatermark = true; // 默认无水印 (remove_watermark=true)
-
-  // Evolink 成本
-  let credits = 0;
-  if (duration === 15) {
-    credits = removeWatermark ? 3.6 : 2.6;
-  } else {
-    // 默认 10s
-    credits = removeWatermark ? 2.6 : 1.6;
-  }
-
-  // 向上取整
-  return Math.ceil(credits) * params.outputNumber;
-}
-
-/**
- * Wan 2.6 积分计算（基于 Evolink 1:1 成本）
- * 720p 5s = 25 Credits, 每秒 = 5 Credits
- * 1080p × 1.67 倍
- *
- * 计算公式: duration × 5 + quality_bonus
- */
-function calculateWan26Credits(params: CreditCalculationParams): number {
+// Model-specific pricing for the current EvoLink core model set.
+function calculateSeedance20MiniCredits(params: CreditCalculationParams): number {
   const duration = parseDuration(params.duration) || 5;
-  const isHighRes = parseResolution(params.resolution) >= 1080;
-
-  // Evolink 成本: 每秒 5 Credits
-  let credits = duration * 5;
-
-  // 1080p 乘数
-  if (isHighRes) {
-    credits = credits * 1.67;
-  }
-
-  // 向上取整
-  return Math.ceil(credits) * params.outputNumber;
+  return Math.ceil(duration * 7) * params.outputNumber;
 }
 
-/**
- * Veo 3.1 Fast Lite 积分计算（基于 Evolink 1:1 成本）
- * 固定价格 9.6 Credits → 10 积分 (720p/1080p)
- * 4K = 28.8 Credits → 29 积分
- *
- * 计算公式: 固定价格
- */
-function calculateVeo31Credits(params: CreditCalculationParams): number {
-  const is4K = parseResolution(params.resolution) >= 2160;
-
-  // Evolink 成本
-  const credits = is4K ? 28.8 : 9.6;
-
-  // 向上取整
-  return Math.ceil(credits) * params.outputNumber;
+function calculateWan25Credits(params: CreditCalculationParams): number {
+  const duration = parseDuration(params.duration) || 5;
+  return Math.ceil(duration * 2) * params.outputNumber;
 }
 
-/**
- * Seedance 1.5 Pro 积分计算（基于 Evolink 1:1 成本，按秒计费）
- * 默认有音频 (generateAudio = true)
- *
- * Evolink 成本（Credits/秒）:
- * - 480p  无音频: 0.818 → 1 积分/秒
- * - 480p  有音频: 1.636 → 2 积分/秒
- * - 720p  无音频: 1.778 → 2 积分/秒
- * - 720p  有音频: 3.557 → 4 积分/秒
- * - 1080p 无音频: 3.966 → 4 积分/秒
- * - 1080p 有音频: 7.932 → 8 积分/秒
- *
- * 计算公式: duration × perSecond × qualityMultiplier
- */
-function calculateSeedanceCredits(params: CreditCalculationParams): number {
+function calculateSeedance20Credits(params: CreditCalculationParams): number {
   const duration = parseDuration(params.duration) || 4;
-  const resolution = parseResolution(params.resolution);
-  const hasAudio = params.generateAudio ?? true; // 默认有音频
-
-  // 基础每秒积分（720p 有音频）
-  let perSecond = 4;
-
-  // 根据分辨率调整
-  if (resolution < 480) {
-    // 480p
-    perSecond = hasAudio ? 2 : 1;
-  } else if (resolution >= 1080) {
-    // 1080p = 720p × 2
-    perSecond = hasAudio ? 8 : 4;
-  } else {
-    // 720p
-    perSecond = hasAudio ? 4 : 2;
-  }
-
+  const perSecond = isHighQuality(params.resolution, params.quality) ? 8 : 4;
   return Math.ceil(duration * perSecond) * params.outputNumber;
+}
+
+function calculateKling30Credits(params: CreditCalculationParams): number {
+  const duration = parseDuration(params.duration) || 5;
+  const perSecond = isHighQuality(params.resolution, params.quality) ? 9 : 6;
+  return Math.ceil(duration * perSecond) * params.outputNumber;
+}
+
+function calculateSora2Credits(params: CreditCalculationParams): number {
+  const duration = parseDuration(params.duration) || 4;
+  return Math.ceil(duration * 6.5) * params.outputNumber;
 }
 
 // ============================================================================
@@ -154,38 +81,40 @@ function calculateSeedanceCredits(params: CreditCalculationParams): number {
 // ============================================================================
 
 /**
- * 计算视频生成所需积分
+ * 璁＄畻瑙嗛鐢熸垚鎵€闇€绉垎
  *
  * @example
  * ```ts
  * const credits = calculateVideoCredits({
  *   model: sora2Model,
- *   duration: "15s",
+ *   duration: "12s",
  *   resolution: "720P",
  *   outputNumber: 1,
  * });
- * // returns 20
+ * // returns 78
  * ```
  */
 export function calculateVideoCredits(params: CreditCalculationParams): number {
   const { model } = params;
 
-  // 根据模型 ID 使用不同的计算逻辑
+  // 鏍规嵁妯″瀷 ID 浣跨敤涓嶅悓鐨勮绠楅€昏緫
   switch (model.id) {
+    case "seedance-2.0-mini":
+      return calculateSeedance20MiniCredits(params);
+
+    case "wan-2.5":
+      return calculateWan25Credits(params);
+
+    case "seedance-2.0":
+      return calculateSeedance20Credits(params);
+
+    case "kling-3.0":
+      return calculateKling30Credits(params);
+
     case "sora-2":
       return calculateSora2Credits(params);
 
-    case "wan2.6":
-      return calculateWan26Credits(params);
-
-    case "veo-3.1":
-      return calculateVeo31Credits(params);
-
-    case "seedance-1.5-pro":
-      return calculateSeedanceCredits(params);
-
     default:
-      // 默认计算：基础积分 × 输出数量
       return model.creditCost * params.outputNumber;
   }
 }
@@ -195,7 +124,7 @@ export function calculateVideoCredits(params: CreditCalculationParams): number {
 // ============================================================================
 
 /**
- * 用于 React 组件的积分计算 Hook
+ * 鐢ㄤ簬 React 缁勪欢鐨勭Н鍒嗚绠?Hook
  *
  * @example
  * ```tsx
@@ -207,7 +136,7 @@ export function calculateVideoCredits(params: CreditCalculationParams): number {
  *     outputNumber: selectedOutputNumber,
  *   });
  *
- *   return <div>{credits} 积分</div>;
+ *   return <div>{credits} 绉垎</div>;
  * }
  * ```
  */
@@ -228,23 +157,23 @@ export function useCreditCalculator(params: Omit<CreditCalculationParams, "model
 // ============================================================================
 
 /**
- * 格式化积分显示
+ * 鏍煎紡鍖栫Н鍒嗘樉绀?
  * @example
- * formatCredits(100) // "100 积分"
+ * formatCredits(100) // "100 绉垎"
  * formatCredits(100, { compact: true }) // "100"
  */
 export function formatCredits(
   credits: number,
   options?: { compact?: boolean; suffix?: string }
 ): string {
-  const { compact = false, suffix = "积分" } = options || {};
+  const { compact = false, suffix = "绉垎" } = options || {};
   return compact ? String(credits) : `${credits} ${suffix}`;
 }
 
 /**
- * 获取积分范围显示（用于模型卡片）
+ * 鑾峰彇绉垎鑼冨洿鏄剧ず锛堢敤浜庢ā鍨嬪崱鐗囷級
  * @example
- * getCreditRangeText(model) // "10-24 积分"
+ * getCreditRangeText(model) // "10-24 绉垎"
  */
 export function getCreditRangeText(model: VideoModel): string {
   const minCredits = calculateVideoCredits({
@@ -252,29 +181,41 @@ export function getCreditRangeText(model: VideoModel): string {
     outputNumber: 1,
   });
 
-  // 计算最大积分（假设最大时长/输出数量）
+  // 璁＄畻鏈€澶хН鍒嗭紙鍋囪鏈€澶ф椂闀?杈撳嚭鏁伴噺锛?
   let maxCredits = minCredits;
 
-  if (model.id === "sora-2") {
+  if (model.id === "seedance-2.0-mini") {
     maxCredits = calculateVideoCredits({
       model,
-      duration: "15s",
+      duration: "8s",
+      resolution: "720P",
       outputNumber: 1,
     });
-  } else if (model.id === "wan2.6") {
+  } else if (model.id === "wan-2.5") {
     maxCredits = calculateVideoCredits({
       model,
-      duration: "15s",
-      resolution: "1080P",
+      duration: "10s",
+      resolution: "720P",
       outputNumber: 1,
     });
-  } else if (model.id === "veo-3.1") {
-    maxCredits = 60; // 固定价格
-  } else if (model.id === "seedance-1.5-pro") {
+  } else if (model.id === "seedance-2.0") {
     maxCredits = calculateVideoCredits({
       model,
       duration: "12s",
       resolution: "1080P",
+      outputNumber: 1,
+    });
+  } else if (model.id === "kling-3.0") {
+    maxCredits = calculateVideoCredits({
+      model,
+      duration: "10s",
+      resolution: "1080P",
+      outputNumber: 1,
+    });
+  } else if (model.id === "sora-2") {
+    maxCredits = calculateVideoCredits({
+      model,
+      duration: "12s",
       outputNumber: 1,
     });
   }
@@ -283,5 +224,5 @@ export function getCreditRangeText(model: VideoModel): string {
     return formatCredits(minCredits);
   }
 
-  return `${minCredits}-${maxCredits} ${model.creditDisplay || "积分"}`;
+  return `${minCredits}-${maxCredits} ${model.creditDisplay || "绉垎"}`;
 }
